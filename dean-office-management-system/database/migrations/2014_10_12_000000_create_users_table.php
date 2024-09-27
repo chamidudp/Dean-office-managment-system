@@ -12,17 +12,17 @@ class CreateUsersTable extends Migration
      * @return void
      */
     public function up()
-{
-    Schema::create('users', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->string('email')->unique();
-        $table->string('password');
-        $table->string('role'); // Admin, Staff, Student, etc.
-        $table->timestamps();
-    });
-}
-
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id(); // Auto-incrementing ID
+            $table->string('name'); // User's name
+            $table->string('email')->unique(); // User's unique email
+            $table->timestamp('email_verified_at')->nullable(); // Timestamp for email verification
+            $table->string('password'); // User's hashed password
+            $table->rememberToken(); // Token for "remember me" functionality
+            $table->timestamps(); // Created at and updated at timestamps
+        });
+    }
 
     /**
      * Reverse the migrations.
@@ -31,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('users'); // Drops the users table if it exists
     }
 }

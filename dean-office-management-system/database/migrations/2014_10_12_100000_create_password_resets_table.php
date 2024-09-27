@@ -14,9 +14,9 @@ class CreatePasswordResetsTable extends Migration
     public function up()
     {
         Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
+            $table->string('email')->index(); // Email associated with the password reset
+            $table->string('token'); // Token for the password reset
+            $table->timestamp('created_at')->nullable(); // Timestamp for when the token was created
         });
     }
 
@@ -27,6 +27,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('password_resets'); // Drops the password_resets table if it exists
     }
 }

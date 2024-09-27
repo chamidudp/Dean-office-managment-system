@@ -14,13 +14,13 @@ class CreateFailedJobsTable extends Migration
     public function up()
     {
         Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->id(); // Unique identifier for each failed job
+            $table->string('uuid')->unique(); // Unique identifier for the job
+            $table->text('connection'); // Connection used for the job
+            $table->text('queue'); // The name of the queue the job was in
+            $table->longText('payload'); // The payload data associated with the job
+            $table->longText('exception'); // Exception message for debugging
+            $table->timestamp('failed_at')->useCurrent(); // Timestamp of when the job failed
         });
     }
 
@@ -31,6 +31,6 @@ class CreateFailedJobsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('failed_jobs'); // Drops the failed_jobs table if it exists
     }
 }

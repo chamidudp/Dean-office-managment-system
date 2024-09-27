@@ -14,8 +14,8 @@ class CreateDocumentsTable extends Migration
     public function up()
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // Primary key for documents table
+            $table->timestamps(); // Created and updated timestamps
         });
     }
 
@@ -26,6 +26,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('documents'); // Drops the documents table if it exists
     }
 }
